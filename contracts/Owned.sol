@@ -12,8 +12,7 @@ contract Owned {
         _;
     }
 
-    function changeOwner(address newOwner) public fromOwner returns(bool success) {
+    function changeOwner(address newOwner) public fromOwner {
         owner = newOwner;
-        success = true;
     }
 }

@@ -1,6 +1,6 @@
 'use strict';
 const OrganisationCompiled = require('../contracts/Organisation.json');
-const ProductCompiled = require('../contracts/Product.json')
+const ProductCompiled = require('../contracts/Product.json');
 
 window.addEventListener('load', function () {
     // Checking if Web3 has been injected by the browser (Mist/MetaMask)
@@ -70,7 +70,7 @@ function start() {
         console.log(prodNumber, orgAddress);
         const Organisation = web3.eth.contract(OrganisationCompiled.abi);
         const deployedOrgContract = Organisation.at(orgAddress);
-        deployedOrgContract.getProduct.call(Number(prodNumber), (err, result) => {
+        deployedOrgContract.products.call(Number(prodNumber) - 1, (err, result) => {
             if (!err) {
                 $('#product-info-result').html('Your product address is '+ result  +'. Visit <a href="' + 'http://localhost:9000/info/' + result +'">info</a> or scan below qrcode');
                 getProductDetails(result);
@@ -96,14 +96,17 @@ function start() {
         const prodAddress = $('.product-add-story .prodAddress').val();
         const storyDescription = $('.product-add-story .storyDescription').val();
         const storyImageURL = $('.product-add-story .storyImageURL').val();
+        const orgAddress = $('.product-add-story .orgAddress').val();
+
+
         if (!prodAddress || !storyDescription || !storyImageURL) {
             alert('All fields are required');
             return;
         }
-        console.log(prodAddress, storyDescription, storyImageURL);
-        const Product = web3.eth.contract(ProductCompiled.abi);
-        const deployedProduct =  Product.at(prodAddress);
-        deployedProduct.addStory(storyDescription, storyImageURL, function(err, result) {
+        const Organisation = web3.eth.contract(OrganisationCompiled.abi);
+        const deployedOrgContract = Organisation.at(orgAddress);
+        const story = storyDescription + '####' + storyImageURL;
+        deployedOrgContract.addStory(prodAddress, story, function(err, result) {
             if (!err) {
                 $('#product-add-story-result').html('Sit tight!!!, we are adding your product story. Your transaction id is ' + result);
             } else {
