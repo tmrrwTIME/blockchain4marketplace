@@ -72,7 +72,7 @@ function start() {
         const deployedOrgContract = Organisation.at(orgAddress);
         deployedOrgContract.products.call(Number(prodNumber) - 1, (err, result) => {
             if (!err) {
-                $('#product-info-result').html('Your product address is '+ result  +'. Visit <a href="' + 'http://localhost:9000/info/' + result +'">info</a> or scan below qrcode');
+                $('#product-info-result').html('Your product address is '+ result  +'. Visit <a href="' + 'http://52.70.55.20/info/' + result +'">info</a> or scan below qrcode');
                 getProductDetails(result);
             } else {
                 alert('Something went wrong. Please see console for more info')
@@ -83,7 +83,7 @@ function start() {
     }
     
     const getProductDetails = (prodAddress) => {
-        makeCode('http://localhost:9000/info/' + prodAddress);
+        makeCode('http://52.70.55.20/info/' + prodAddress);
     }
 
     const makeCode = (url) => {
