@@ -1,0 +1,85 @@
+<html>
+    <head>
+        <title>Stories</title>
+        <style>
+            #qrcode {
+                width:300px;
+                height:300px;
+                margin-top:15px;
+            }
+        </style>
+        <script
+            src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+        <script src="bower_components/web3/dist/web3.min.js"></script>
+        <script src="build/js/app-bundle.js"></script>
+    </head>
+    <body>
+        <div class="org-create">
+            <div>
+                <input class="orgName" placeholder="Your Org's Name" />
+            </div>
+            <div>
+                <button onclick="exp.createOrganisation()">Create Organisation</button>
+            </div>
+            <div>
+                <div id="org-create-result"></div>
+            </div>
+        </div>
+        <div class="product-add">
+            <div>
+                <input class="orgAddress" placeholder="Your Org's Contract Address" />
+            </div>
+            <div>
+                <input class="prodName" placeholder="Product Name" />
+            </div>
+            <div>
+                <input class="prodPrice" placeholder="Product Price in Weis" />
+            </div>
+            <div>
+                <button onclick="exp.addProduct()">Add Product</button>
+            </div>
+            <div>
+                <div id="product-add-result"></div>
+            </div>
+        </div>
+        <div class="product-info">
+            <div>
+                <input class="orgAddress" placeholder="Your Org's Contract Address" />
+            </div>
+            <div>
+                <input class="prodNumber" placeholder="Nth Product"/>
+            </div>
+            <div>
+                <button onclick="exp.getProductAtIndex()">Get Product</button>
+            </div>
+            <div>
+                <div id="product-info-result"></div>
+            </div>
+        </div>
+        <div class="qrcode">
+            <p>QR Code</p>
+            <div id="qrcode">
+            </div>
+        </div>
+        <div class="product-add-story">
+            <div>
+                <input class="prodAddress" placeholder="Product Address" />
+            </div>
+            <div>
+                <textarea class="storyDescription" placeholder="Description"></textarea>
+            </div>
+            <div>
+                <input class="storyImageURL" placeholder="Image URL" />
+            </div>
+            <div>
+                <button onclick="exp.addStory()">Add Story</button>
+            </div>
+            <div>
+                <div id="product-add-story-result"></div>
+            </div>
+        </div>
+    </body>
+</html>

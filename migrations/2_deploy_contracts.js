@@ -1,5 +1,5 @@
-var Init = artifacts.require("./Init.sol");
+var Organisation = artifacts.require("./Organisation.sol");
 
 module.exports = function(deployer) {
-  deployer.deploy(Init);
+  deployer.deploy(Organisation);
 };
