@@ -9,6 +9,9 @@ const ProductCompiled = require(path.join(__dirname, 'public/contracts/Product.j
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.set('views', './public/templates');
+app.set('view engine', 'pug')
+
 app.get('/info/:address', (req, res) => {
     const address = req.params.address;
     const Product = web3.eth.contract(ProductCompiled.abi);
@@ -19,14 +22,14 @@ app.get('/info/:address', (req, res) => {
     let i = 0;
     while(i > -1) {
         try {
-            stories.push(deployedProduct.stories(i));
+            const story = deployedProduct.stories(i);
+            stories.push(story);
             ++i;
         } catch(err) {
-            console.log(err);
             break;
         }
     }
-    res.send({ name, price, stories });
+    res.render('product', { name, price, stories });
 });
 
 const PORT = process.env.PORT || 9000;
