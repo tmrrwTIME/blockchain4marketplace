@@ -4,14 +4,15 @@ html
         style
             include ../assets/style.css
     body
-        header
-            h2= 'Product Name - ' + name
-            h2= 'Price in ETH - ' + price
-        section
+        header(class= 'header')
+            h3= 'Product Name - ' + name
+            h4= 'Price in ETH - ' + price
+        section(class= 'section')
             div
                 ul(class= 'stories')
                     each story in stories
                         li
                             img(src= story.split('####')[1])
+                            div
                             p= story.split('####')[0]
                             p= new Date(story.split('####')[2]).toDateString() + ' ' + new Date(story.split('####')[2]).toTimeString().split(' ')[0]
