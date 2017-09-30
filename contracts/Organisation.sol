@@ -20,7 +20,7 @@ contract Organisation is Owned {
         Product(prodAddress).addStory(story);
     }
 
-    function setName(string _name) public {
+    function changeName(string _name) fromOwner public {
         name = _name;
     }
 }

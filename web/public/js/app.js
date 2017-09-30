@@ -22,7 +22,6 @@ function start() {
     const createOrganisation = () => {
         const orgName = $('.org-create .orgName').val();
         const Organisation = web3.eth.contract(OrganisationCompiled.abi);
-        console.log(orgName);
         Organisation.new(orgName, {
             data: OrganisationCompiled.unlinked_binary,
             from: web3.eth.accounts[0]
@@ -105,7 +104,8 @@ function start() {
         }
         const Organisation = web3.eth.contract(OrganisationCompiled.abi);
         const deployedOrgContract = Organisation.at(orgAddress);
-        const story = storyDescription + '####' + storyImageURL;
+        const date = new Date();
+        const story = storyDescription + '####' + storyImageURL + '####' + date.toISOString();
         deployedOrgContract.addStory(prodAddress, story, function(err, result) {
             if (!err) {
                 $('#product-add-story-result').html('Sit tight!!!, we are adding your product story. Your transaction id is ' + result);

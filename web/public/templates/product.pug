@@ -14,3 +14,4 @@ html
                         li
                             img(src= story.split('####')[1])
                             p= story.split('####')[0]
+                            p= new Date(story.split('####')[2]).toDateString() + ' ' + new Date(story.split('####')[2]).toTimeString().split(' ')[0]

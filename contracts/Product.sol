@@ -1,16 +1,21 @@
 pragma solidity ^0.4.15;
 
-contract Product {
-    string public name;
-    uint8 public price; //in ether
+import './Owned.sol';
+
+contract Product is Owned {
+    struct Prod {
+        string name;
+        uint8 price; //in ether
+    } Prod public product;
+
     string[] public stories;
 
     function Product(string _name, uint8 _price) public {
-        name = _name;
-        price = _price;
+        product.name = _name;
+        product.price = _price;
     }
 
-    function addStory(string story) public {
+    function addStory(string story) public fromOwner {
         stories.push(story);
     }
 }

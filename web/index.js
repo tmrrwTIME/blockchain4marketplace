@@ -16,8 +16,10 @@ app.get('/info/:address', (req, res) => {
     const address = req.params.address;
     const Product = web3.eth.contract(ProductCompiled.abi);
     const deployedProduct = Product.at(address);
-    const name = deployedProduct.name();
-    const price = deployedProduct.price();
+    const product = deployedProduct.product();
+    const name = product[0];
+    const price = product[1].toString(10);
+    console.log(name, price);
     const stories = [];
     let i = 0;
     while(i > -1) {
